@@ -9,17 +9,27 @@ app.use(express.json());
 const users = [
     {
         id: 0,
-        name: 'Testik',
+        name: 'Настя Р',
         daysCount: 1
     },
     {
         id: 1,
-        name: 'Chelik',
+        name: 'Настя К',
         daysCount: 1
     },
     {
         id: 2,
-        name: 'Huuuy',
+        name: 'Саша',
+        daysCount: 1
+    },
+    {
+        id: 3,
+        name: 'Сария',
+        daysCount: 1
+    },
+    {
+        id: 4,
+        name: 'Олег',
         daysCount: 1
     },
 ]
