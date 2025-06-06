@@ -1,25 +1,22 @@
 <script lang="ts" setup>
-import {ref} from "vue";
+import {onBeforeMount, ref} from "vue";
 import {UsersDataResponse} from "@/models/users-data-response";
 
-const users = ref<UsersDataResponse[]>([
-      {
-        id: 0,
-        name: 'Testik',
-        daysCount: 1
-      },
-      {
-        id: 1,
-        name: 'Chelik',
-        daysCount: 3
-      },
-      {
-        id: 2,
-        name: 'Huuuy',
-        daysCount: 5
-      },
-    ]
-)
+const users = ref<UsersDataResponse[]>([]);
+
+
+onBeforeMount(() => {
+  getUsers();
+})
+
+async function getUsers() {
+  return fetch("https://thinking-about-quitting-backend.onrender.com/users").then((response) => {
+    return response.json();
+  }).then((data) => {
+    users.value = data;
+  })
+}
+
 
 function getDayPostfix(n: number): string {
   const abs = Math.abs(n) % 100;
@@ -48,7 +45,7 @@ function getDayPostfix(n: number): string {
     <div class="users">
       <div class="users__list">
         <div class="user" v-for="user in users">
-          <div class="user__days"> {{ user.daysCount + ' ' + getDayPostfix(user.daysCount)}}</div>
+          <div class="user__days"> {{ user.daysCount + ' ' + getDayPostfix(user.daysCount) }}</div>
           <img class="user__img" src="./assets/chelik.png"/>
           <div class="user__name"> {{ user.name }}</div>
           <button class="user__button"> ЖМЯК</button>
