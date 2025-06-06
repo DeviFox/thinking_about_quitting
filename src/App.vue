@@ -18,7 +18,7 @@ async function getUsers() {
 }
 
 async function clickBtn(id: number) {
-  return fetch("https://thinking-about-quitting-backend.onrender.com/users", {
+  return await fetch("https://thinking-about-quitting-backend.onrender.com/users", {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json"
@@ -28,6 +28,8 @@ async function clickBtn(id: number) {
     return response.json();
   }).then((data) => {
     users.value = users.value.map(u => (u.id === data.id ? data : u))
+
+    console.log(users.value);
   })
 }
 
@@ -60,7 +62,7 @@ function getDayPostfix(n: number): string {
       <div class="users__list">
         <div class="user" v-for="user in users">
           <div class="user__days"> {{ user.daysCount + ' ' + getDayPostfix(user.daysCount) }}</div>
-          <img class="user__img" src="./assets/chelik.png"/>
+          <img class="user__img" src="./assets/chelik.png" alt="chelik_img"/>
           <div class="user__name"> {{ user.name }}</div>
           <button class="user__button" @click="clickBtn(user.id)"> ЖМЯК</button>
         </div>
@@ -83,8 +85,9 @@ function getDayPostfix(n: number): string {
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, 130px);
     gap: 16px;
+    place-content: center;
   }
 }
 
@@ -111,8 +114,12 @@ function getDayPostfix(n: number): string {
   &__button {
     border-radius: 8px;
     border: none;
-    padding: 5px 15px;
+    padding: 5px 20px;
     background-color: steelblue;
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
   }
 }
 </style>
