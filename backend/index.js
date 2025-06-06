@@ -10,27 +10,27 @@ const users = [
     {
         id: 0,
         name: 'Настя Р',
-        daysCount: 1
+        daysCount: 0
     },
     {
         id: 1,
         name: 'Настя К',
-        daysCount: 1
+        daysCount: 0
     },
     {
         id: 2,
         name: 'Саша',
-        daysCount: 1
+        daysCount: 0
     },
     {
         id: 3,
         name: 'Сария',
-        daysCount: 1
+        daysCount: 0
     },
     {
         id: 4,
         name: 'Олег',
-        daysCount: 1
+        daysCount: 0
     },
 ]
 
