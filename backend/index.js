@@ -34,9 +34,7 @@ app.patch('/users', (req, res) => {
 
     if (activeUser) {
         activeUser.daysCount = activeUser.daysCount + 1
-        res.json({
-            activeUser
-        })
+        res.json(activeUser)
     }
 })
 
