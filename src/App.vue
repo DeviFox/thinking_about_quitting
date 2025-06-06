@@ -17,6 +17,20 @@ async function getUsers() {
   })
 }
 
+async function clickBtn(id: number) {
+  return fetch("https://thinking-about-quitting-backend.onrender.com/users", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({id}),
+  }).then((response) => {
+    return response.json();
+  }).then((data) => {
+    users.value = users.value.map(u => (u.id === data.id ? data : u))
+  })
+}
+
 
 function getDayPostfix(n: number): string {
   const abs = Math.abs(n) % 100;
@@ -48,7 +62,7 @@ function getDayPostfix(n: number): string {
           <div class="user__days"> {{ user.daysCount + ' ' + getDayPostfix(user.daysCount) }}</div>
           <img class="user__img" src="./assets/chelik.png"/>
           <div class="user__name"> {{ user.name }}</div>
-          <button class="user__button"> ЖМЯК</button>
+          <button class="user__button" @click="clickBtn(user.id)"> ЖМЯК</button>
         </div>
       </div>
     </div>
